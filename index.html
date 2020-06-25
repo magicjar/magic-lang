@@ -6,8 +6,8 @@
     <body>
         <h1 data-magiclang="title">MagicLang Module</h1>
         <h2 data-magiclang="subtitle">Javascript multi-language switcher system.</h2>
-        <button onclick="switchL('id')">Switch to Indonesian</button>
-        <button onclick="switchL('en')">Switch to English</button>
+        <button onclick="changeLanguage('id')">Switch to Indonesian</button>
+        <button onclick="changeLanguage('en')">Switch to English</button>
         <script src="dist/js/umd/magic-lang.js"></script>
         <script>
             MagicLang.option({
@@ -16,8 +16,8 @@
 
             MagicLang.init();
 
-            function switchL(lang) {
-                MagicLang.switchLang(lang);
+            function changeLanguage(lang) {
+                MagicLang.change(lang);
             }
         </script>
     </body>

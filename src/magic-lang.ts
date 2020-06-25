@@ -69,7 +69,7 @@ export function init() {
     return ml.load()
 }
 
-export function switchLang(params: string) {
+export function change(params: string) {
     return ml.load(params)
 }
 
