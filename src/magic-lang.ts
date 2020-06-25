@@ -1,11 +1,24 @@
+interface Options {
+    path: string,
+    lang: string
+}
+
 export class MagicLang {
 
-    options = {
-        path: 'dist/lang',
-        lang: 'en'
+    options: Options
+    constructor(opt?: Options) {
+        this.options = {
+            path: 'dist/lang',
+            lang: 'en'
+        }
+        Object.assign({}, this.options, opt)
     }
 
     currentLang = ''
+
+    option = (opt: Options) => {
+        Object.assign(this.options, opt)
+    }
 
     load = (newLang?: string) => {
         if (this.currentLang == newLang) return
@@ -58,4 +71,8 @@ export function init() {
 
 export function switchLang(params: string) {
     return ml.load(params)
+}
+
+export function option(opt: Options) {
+    ml.option(opt)
 }

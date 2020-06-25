@@ -10,6 +10,10 @@
         <button onclick="switchL('en')">Switch to English</button>
         <script src="dist/js/umd/magic-lang.js"></script>
         <script>
+            MagicLang.option({
+                lang: 'id'
+            });
+
             MagicLang.init();
 
             function switchL(lang) {
