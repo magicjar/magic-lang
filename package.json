@@ -1,0 +1,31 @@
+{
+  "name": "magic-lang",
+  "version": "0.1.0",
+  "description": "Javascript multi-language switcher system.",
+  "author": "Fajar Setya Budi",
+  "license": "MIT",
+  "main": "dist/magiclang.js",
+  "keywords": [
+    "javascript",
+    "multi-language",
+    "library",
+    "module",
+    "umd",
+    "esm",
+    "cjs"
+  ],
+  "scripts": {
+    "clean": "shx rm -rf dist/js src/js",
+    "compile": "npm run clean && npm run compile:ts && npm run compile:js",
+    "compile:js": "rollup --config rollup.config.js --sourcemap",
+    "compile:ts": "tsc",
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "rollup": "^2.16.1",
+    "shx": "^0.3.2",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5"
+  }
+}
