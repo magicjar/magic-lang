@@ -53,8 +53,12 @@ export class MagicLang {
 
         for (let i = 0; i < nodes.length; i++) {
             const attrVal = nodes[i].getAttribute('data-magiclang')
+
+            const dict = dicts[attrVal as any]
+
+            if (dict == '' || dict == null) continue
             
-            if (attrVal != null) nodes[i].textContent = dicts[attrVal]
+            if (attrVal != null) nodes[i].textContent = dict
         }
     }
 }
