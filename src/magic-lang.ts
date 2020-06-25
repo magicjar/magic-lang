@@ -1,6 +1,7 @@
 interface Options {
     path: string,
-    lang: string
+    lang: string,
+    attr: string
 }
 
 export class MagicLang {
@@ -9,7 +10,8 @@ export class MagicLang {
     constructor(opt?: Options) {
         this.options = {
             path: 'dist/lang',
-            lang: 'en'
+            lang: 'en',
+            attr: 'magiclang'
         }
         Object.assign({}, this.options, opt)
     }
@@ -49,10 +51,10 @@ export class MagicLang {
     }
 
     translate = (dicts: any) => {
-        const nodes = document.querySelectorAll('[data-magiclang]')
+        const nodes = document.querySelectorAll('[' + this.options.attr + ']')
 
         for (let i = 0; i < nodes.length; i++) {
-            const attrVal = nodes[i].getAttribute('data-magiclang')
+            const attrVal = nodes[i].getAttribute(this.options.attr)
 
             const dict = dicts[attrVal as any]
 

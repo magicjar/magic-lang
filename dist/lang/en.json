@@ -1,4 +1,5 @@
 {
     "title": "MagicLang Module",
-    "subtitle": "Javascript multi-language switcher system."
+    "subtitle": "Javascript multi-language switcher system.",
+    "description": "This is module description."
 }
