@@ -1,7 +1,9 @@
 interface Options {
+    langList: string[],
     path: string,
     lang: string,
-    attr: string
+    attr: string,
+    urlParam: string
 }
 
 export class MagicLang {
@@ -9,9 +11,11 @@ export class MagicLang {
     options: Options
     constructor(opt?: Options) {
         this.options = {
+            langList: ['en', 'id'],
             path: 'dist/lang',
             lang: 'en',
-            attr: 'magiclang'
+            attr: 'magiclang',
+            urlParam: 'lang'
         }
         Object.assign({}, this.options, opt)
     }
@@ -22,14 +26,15 @@ export class MagicLang {
         Object.assign(this.options, opt)
     }
 
-    load = (newLang?: string) => {
-        if (this.currentLang == newLang) return
-
+    load = () => {
         let lang = this.options.lang
         let path = this.options.path
 
-        if (newLang !== undefined) lang = newLang
-        if (lang == null) lang = this.options.lang
+        const query = window.location.search;
+        const params = new URLSearchParams(query)
+
+        const theParam = params.get(this.options.urlParam)
+        if (theParam != null && this.options.langList.includes(theParam)) lang = theParam
 
         this.currentLang = lang
 
@@ -39,12 +44,11 @@ export class MagicLang {
         object.onreadystatechange = () => {
             if (object.readyState == 4 && object.status == 200) {
                 this.translate(JSON.parse(object.responseText))
-                localStorage.magicLang = lang
-            } 
+            }
         }
 
         object.addEventListener("error", () => {
-            console.error("MagicLang.js: Failed loading language files.")
+            console.error("magic-lang.js: Failed to load language files.")
         }, false)
 
         object.send(null)
@@ -68,15 +72,7 @@ export class MagicLang {
 const ml = new MagicLang()
 
 export function init() {
-    const savedLang = localStorage.magicLang
-
-    if (savedLang) return ml.load(savedLang)
-
     return ml.load()
-}
-
-export function change(params: string) {
-    return ml.load(params)
 }
 
 export function option(opt: Options) {
