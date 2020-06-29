@@ -21,7 +21,7 @@ Javascript multi-language switcher system
     - Include the script before the closing `</body>` tag
 
         ``` html
-        <script src="../js/magic-lang.js"></script>
+        <script src="../js/magic-lang.min.js"></script>
         ```
 
 ## Implementing
@@ -53,37 +53,41 @@ Javascript multi-language switcher system
     <h1 magiclang="title">Translate this title!</h1>
     ```
 
-2. Initiate Magic-Lang
+2. Add options
+    ``` html
+    <script>
+        MagicLang.option({
+            langList: ['en', 'id'], // Specify all of site language here
+            lang: 'en' // Default language
+        });
+    </script>
+    ```
+
+3. Initiate Magic-lang
     ``` html
     <script>
         MagicLang.init();
     </script>
     ```
 
-2. Switch / change language
-    ``` html
-    <script>
-        MagicLang.change(language);
-    </script>
-    ```
+4. Change language
+
+    To change the language just add search parameter on the url 
+    
+    Example: `https://yourawesomesite.com/?lang=en`
 
 ## Options
 
 You can change any default option with the following method.
-``` html
-<script>
-    MagicLang.option({
-        path: 'dist/lang',
-        lang: 'en'
-    });
-</script>
-```
+
 
 Option | Value (default) | Description
 ------ | --------------- | -----------
-**path** | 'dist/lang' | Language files root directory
-**lang** | 'en' | The default site language
-**attr** | 'magiclang' | Attribute name to indicate which element should be translated
+**langList** | ['en', 'id'] **(mandatory)**' | You have to specify all of your site language
+**path** | 'dist/lang' (optional) | Language files root directory
+**lang** | 'en' (optional) | The default site language
+**attr** | 'magiclang' (optional) | Attribute name to indicate which element should be translated
+**urlParam** | 'lang' | Search parameter name
 
 ## Browser support
 
